@@ -1,0 +1,70 @@
+# =============================================
+# SILAPAS — Apache Configuration
+# =============================================
+
+# Aktifkan mod_rewrite
+Options -Indexes +FollowSymLinks
+RewriteEngine On
+
+# =============================================
+# Force HTTPS (hilangkan warning Chrome)
+# =============================================
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} !^localhost$
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1$
+RewriteCond %{HTTP_HOST} !^192\.168\. [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# =============================================
+# Security Headers
+# =============================================
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# =============================================
+# Cache untuk aset statis
+# =============================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css             "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/jpeg           "access plus 30 days"
+    ExpiresByType image/png            "access plus 30 days"
+    ExpiresByType image/svg+xml        "access plus 30 days"
+</IfModule>
+
+# =============================================
+# Blokir akses file sensitif
+# =============================================
+<FilesMatch "\.(sql|log|env|ini|sh|ps1)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Blokir akses langsung ke file diagnostik
+<FilesMatch "^(cek_hosting|cek_zip|fix_logo)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# =============================================
+# Gzip Compression (percepat loading)
+# =============================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript
+    AddOutputFilterByType DEFLATE text/plain application/json
+</IfModule>
+
+# =============================================
+# PHP Settings (override jika diizinkan hosting)
+# =============================================
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 60
+    php_flag display_errors Off
+</IfModule>
