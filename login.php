@@ -117,9 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div style="text-align: right; margin-bottom: 16px; font-size: 13px;">
-                <a href="<?= BASE_URL ?>/lupa_password.php" style="color: #64b5f6; text-decoration: none;"><i class="fas fa-key"></i> Lupa Kata Sandi?</a>
-            </div>
 
             <button type="submit" class="btn-login" id="loginBtn">
                 <span id="loginText">

@@ -25,7 +25,7 @@ $doc->addParagraph('KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN R.I', ['bold'=>true,
 $doc->addParagraph('DIREKTORAT JENDERAL PEMASYARAKATAN', ['bold'=>true,'align'=>'center','size'=>20,'before'=>0,'after'=>20]);
 $doc->addParagraph(getSetting('kanwil'), ['bold'=>true,'align'=>'center','size'=>20,'before'=>0,'after'=>20]);
 $doc->addParagraph(getSetting('nama_instansi'), ['bold'=>true,'align'=>'center','size'=>22,'before'=>0,'after'=>20]);
-$doc->addParagraph(getSetting('alamat') . ' No.01 Kota Tasikmalaya', ['align'=>'center','size'=>16,'before'=>0,'after'=>20]);
+$doc->addParagraph(getSetting('alamat') . ', Kode Pos ' . (getSetting('kode_pos') ?: '46112') . ' Telp. ' . getSetting('telp'), ['align'=>'center','size'=>16,'before'=>0,'after'=>20]);
 $doc->addParagraph('Telp. ' . getSetting('telp') . ' Email: ' . getSetting('email'), ['align'=>'center','size'=>16,'before'=>0,'after'=>60]);
 
 // Judul
@@ -68,9 +68,14 @@ $doc->addParagraph('Pembebasan Bersyarat (PB) : ' . count($pbList) . ' Orang WBP
 $doc->addParagraph('Cuti Bersyarat (CB)       : ' . count($cbList) . ' Orang WBP', ['size'=>20,'before'=>0,'after'=>80]);
 
 // TTD
+$ttdPath = __DIR__ . '/../ttd_kalapas.jpg';
 $doc->addParagraph('Mengetahui ;', ['align'=>'right','size'=>22,'before'=>0,'after'=>20]);
 $doc->addParagraph('K a l a p a s', ['align'=>'right','size'=>22,'before'=>0,'after'=>20]);
-$doc->addBlankLine(4);
-$doc->addParagraph(getSetting('nama_kalapas'), ['align'=>'right','bold'=>true,'underline'=>true,'size'=>22,'before'=>0,'after'=>0]);
+$ttdRId = $doc->embedImage($ttdPath);
+if (!empty($ttdRId)) { $doc->addInlineImage($ttdRId, 1800000, 700000, 'right'); }
+$doc->addParagraph(getSetting('nama_kalapas'), ['align'=>'right','bold'=>true,'underline'=>true,'size'=>22,'before'=>0,'after'=>20]);
+if (getSetting('nip_kalapas')) {
+    $doc->addParagraph('NIP. ' . getSetting('nip_kalapas'), ['align'=>'right','size'=>20,'before'=>0,'after'=>0]);
+}
 
 $doc->download('Daftar_WBP_Sidang_TPP_' . date('Ymd', strtotime($sidang['tanggal_sidang'])) . '.docx');
