@@ -1,4 +1,3 @@
-tmp_test/
-tmp_read/
-test_gen_docx.php
-test_quick.php
+# File sementara / upload lokal
+uploads/foto/*
+!uploads/foto/.gitkeep
