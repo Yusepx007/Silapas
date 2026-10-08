@@ -334,26 +334,38 @@ class DocxWriter {
         }
         $rightCell .= '</w:tc>';
 
-        // Garis bawah kop (full width)
+        // Tabel KOP (tanpa border apapun — cell border override table border)
         $xml  = '<w:tbl>';
         $xml .= '<w:tblPr>';
         $xml .= '<w:tblW w:w="9360" w:type="dxa"/>';
         $xml .= '<w:tblBorders>';
-        // Only bottom border (garis bawah kop surat)
-        $xml .= '<w:top    w:val="none"   w:sz="0"  w:space="0" w:color="auto"/>';
-        $xml .= '<w:left   w:val="none"   w:sz="0"  w:space="0" w:color="auto"/>';
-        $xml .= '<w:bottom w:val="single" w:sz="24" w:space="0" w:color="000000"/>';
-        $xml .= '<w:right  w:val="none"   w:sz="0"  w:space="0" w:color="auto"/>';
-        $xml .= '<w:insideH w:val="none"  w:sz="0"  w:space="0" w:color="auto"/>';
-        $xml .= '<w:insideV w:val="none"  w:sz="0"  w:space="0" w:color="auto"/>';
-
+        // Semua border none — garis KOP dibuat sebagai paragraph terpisah di bawah
+        $xml .= '<w:top    w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
+        $xml .= '<w:left   w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
+        $xml .= '<w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
+        $xml .= '<w:right  w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
+        $xml .= '<w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
+        $xml .= '<w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>';
         $xml .= '</w:tblBorders>';
         $xml .= '</w:tblPr>';
         $xml .= '<w:tr>' . $leftCell . $rightCell . '</w:tr>';
         $xml .= '</w:tbl>';
         $this->bodyParts[] = $xml;
+
+        // Garis bawah kop surat — sebagai paragraph border (TIDAK bisa di-override cell)
+        // w:sz="24" = 3pt tebal, sesuai template resmi lapas
+        $this->bodyParts[] = '<w:p>'
+            . '<w:pPr>'
+            .   '<w:pBdr>'
+            .     '<w:bottom w:val="single" w:sz="24" w:space="1" w:color="000000"/>'
+            .   '</w:pBdr>'
+            .   '<w:spacing w:before="0" w:after="60"/>'
+            . '</w:pPr>'
+            . '</w:p>';
+
         return $this;
     }
+
 
     /** Section break untuk halaman baru */
     public function addPageBreak(): self {
