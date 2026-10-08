@@ -40,6 +40,7 @@ $telp         = getSetting('telp');
 $fax          = getSetting('fax') ?: $telp;
 $email        = getSetting('email');
 $logoPath     = __DIR__ . '/../logo_kop.png';
+$ttdPath      = __DIR__ . '/../ttd_kalapas.jpg'; // badge TTD Kalapas
 $laman        = getSetting('laman')    ?: 'lapastasikmalaya.kemenkumham.go.id';
 $kodePos      = getSetting('kode_pos') ?: '46112';
 
@@ -111,7 +112,8 @@ $doc->addTable(
     [['K a l a p a s', '']],
     ['colWidths' => [4680, 4680], 'noBorder' => true]
 );
-$doc->addBlankLine(4);
+$ttdRId = $doc->embedImage($ttdPath);
+if (!empty($ttdRId)) { $doc->addInlineImage($ttdRId, 1800000, 700000, 'left'); }
 $doc->addTable(
     [$namaKalapas, $ketua],
     [['NIP. ' . $nipKalapas, '']],
@@ -167,7 +169,8 @@ $doc->addTable(
     [['', 'K a l a p a s']],
     ['colWidths' => [5000, 4360], 'noBorder' => true]
 );
-$doc->addBlankLine(4);
+$ttdRId2 = $doc->embedImage($ttdPath);
+if (!empty($ttdRId2)) { $doc->addInlineImage($ttdRId2, 1800000, 700000, 'right'); }
 $doc->addTable(
     ['', $namaKalapas],
     [['', 'NIP. ' . $nipKalapas]],
