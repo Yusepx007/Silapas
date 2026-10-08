@@ -169,8 +169,7 @@ $doc->addParagraph(
 $doc->addParagraph('Tasikmalaya, ' . $tglStr,
     ['size'=>22,'align'=>'right','before'=>0,'after'=>40]);
 addTtd2Kolom($doc, 'Mengetahui;' . "\n" . 'Kepala,', 'Narapidana,');
-$ttdRId2 = $doc->embedImage($ttdPath);
-if (!empty($ttdRId2)) { $doc->addInlineImage($ttdRId2, 1800000, 700000, 'left'); }
+$doc->addBlankLine(4);
 $doc->addParagraph($namaKalapas,         ['size'=>22,'bold'=>true,'underline'=>true,'before'=>0,'after'=>16]);
 $doc->addParagraph('NIP. ' . $nipKalapas, ['size'=>22,'before'=>0,'after'=>0]);
 

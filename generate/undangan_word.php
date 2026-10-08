@@ -112,8 +112,7 @@ $doc->addTable(
     [['K a l a p a s', '']],
     ['colWidths' => [4680, 4680], 'noBorder' => true]
 );
-$ttdRId = $doc->embedImage($ttdPath);
-if (!empty($ttdRId)) { $doc->addInlineImage($ttdRId, 1800000, 700000, 'left'); }
+$doc->addBlankLine(4);
 $doc->addTable(
     [$namaKalapas, $ketua],
     [['NIP. ' . $nipKalapas, '']],
@@ -169,8 +168,7 @@ $doc->addTable(
     [['', 'K a l a p a s']],
     ['colWidths' => [5000, 4360], 'noBorder' => true]
 );
-$ttdRId2 = $doc->embedImage($ttdPath);
-if (!empty($ttdRId2)) { $doc->addInlineImage($ttdRId2, 1800000, 700000, 'right'); }
+$doc->addBlankLine(4);
 $doc->addTable(
     ['', $namaKalapas],
     [['', 'NIP. ' . $nipKalapas]],
