@@ -26,7 +26,7 @@ $pbList = array_filter($napiList, fn($n) => $n['kegiatan'] === 'PB');
         <table style="width:100%;border:none">
             <tr>
                 <td style="width:70px;text-align:center">
-                    <img src="<?= BASE_URL ?>/logo.png" style="width:60px;height:60px;object-fit:contain">
+                    <img src="<?= BASE_URL ?>/logo_kop.png" style="width:60px;height:60px;object-fit:contain">
                 </td>
                 <td style="text-align:center">
                     <div>KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN R.I</div>

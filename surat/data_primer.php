@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // surat/data_primer.php — Data Primer LITMAS
 require_once __DIR__ . '/../config.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -97,7 +97,7 @@ include __DIR__ . '/../includes/header.php';
                     <table style="width:100%;border:none">
                         <tr>
                             <td style="width:70px;text-align:center">
-                                <img src="<?= BASE_URL ?>/logo.png" style="width:65px;height:65px;object-fit:contain">
+                                <img src="<?= BASE_URL ?>/logo.jpg" style="width:65px;height:65px;object-fit:contain">
                             </td>
                             <td style="text-align:center">
                                 <div>KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN REPUBLIK INDONESIA</div>

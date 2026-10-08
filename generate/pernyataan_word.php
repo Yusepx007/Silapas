@@ -48,6 +48,10 @@ $alamat       = getSetting('alamat');
 $telp         = getSetting('telp');
 $fax          = getSetting('fax') ?: getSetting('telp');
 $email        = getSetting('email');
+$logoPath     = __DIR__ . '/../logo_kop.png'; // logo lambang untuk kop surat
+$ttdPath      = __DIR__ . '/../ttd_kalapas.jpg'; // badge TTD Kalapas
+$laman        = getSetting('laman')    ?: 'lapastasikmalaya.kemenkumham.go.id';
+$kodePos      = getSetting('kode_pos') ?: '46112';
 
 function pjField(array $pj, string $key): string {
     return $pj[$key] ?? '';
@@ -70,28 +74,12 @@ function pjUmur(array $pj): string {
     } catch (Throwable $e) { return ''; }
 }
 
-// KOP style (helper)
-function addKop(DocxWriter $doc, string $namaInstansi, string $kanwil, string $alamat, string $telp, string $fax, string $email): void {
-    $doc->addParagraph('KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN REPUBLIK INDONESIA',
-        ['bold'=>true,'align'=>'center','size'=>20,'before'=>0,'after'=>16]);
-    $doc->addParagraph('DIREKTORAT JENDERAL PEMASYARAKATAN',
-        ['bold'=>true,'align'=>'center','size'=>20,'before'=>0,'after'=>16]);
-    $doc->addParagraph($kanwil,
-        ['bold'=>true,'align'=>'center','size'=>20,'before'=>0,'after'=>16]);
-    $doc->addParagraph($namaInstansi,
-        ['bold'=>true,'align'=>'center','size'=>24,'before'=>0,'after'=>16]);
-    $doc->addParagraph($alamat . ' No.01 Kota Tasikmalaya',
-        ['align'=>'center','size'=>16,'before'=>0,'after'=>12]);
-    $doc->addParagraph('Telepon    ' . $telp . ', Faksimili ' . $fax . ', Email : ' . $email,
-        ['align'=>'center','size'=>16,'before'=>0,'after'=>60]);
-}
-
 function addDataRow(DocxWriter $doc, array $rows, array $colWidths = [2500, 200, 6660]): void {
-    $doc->addTable(['','',''], $rows, ['colWidths' => $colWidths]);
+    $doc->addTable(['','',''], $rows, ['colWidths' => $colWidths, 'noBorder' => true]);
 }
 
 function addTtd2Kolom(DocxWriter $doc, string $kiri, string $kanan, array $colWidths = [4680,4680]): void {
-    $doc->addTable([$kiri, $kanan], [['','']], ['colWidths' => $colWidths]);
+    $doc->addTable([$kiri, $kanan], [['','']], ['colWidths' => $colWidths, 'noBorder' => true]);
 }
 
 // ═══════════════════════════════════════════════════
@@ -100,7 +88,8 @@ function addTtd2Kolom(DocxWriter $doc, string $kiri, string $kanan, array $colWi
 // ═══════════════════════════════════════════════════
 $doc = new DocxWriter();
 
-addKop($doc, $namaInstansi, $kanwil, $alamat, $telp, $fax, $email);
+$doc->addKopWithLogo($logoPath, $namaInstansi, $kanwil, $alamat, $telp, $fax, $email, $laman, $kodePos);
+$doc->addBlankLine();
 
 $doc->addParagraph('SURAT PERNYATAAN',
     ['bold'=>true,'align'=>'center','underline'=>true,'size'=>28,'before'=>80,'after'=>80]);
@@ -130,7 +119,8 @@ addTtd2Kolom($doc, 'Keluarga Narapidana,', 'Narapidana,');
 $doc->addBlankLine(4);
 $doc->addParagraph('Mengetahui;',   ['size'=>22,'align'=>'center','before'=>0,'after'=>20]);
 $doc->addParagraph('Kepala,',       ['size'=>22,'align'=>'center','before'=>0,'after'=>20]);
-$doc->addBlankLine(3);
+$ttdRId = $doc->embedImage($ttdPath);
+if (!empty($ttdRId)) { $doc->addInlineImage($ttdRId, 1800000, 700000, 'center'); }
 $doc->addParagraph($namaKalapas,    ['size'=>22,'align'=>'center','bold'=>true,'underline'=>true,'before'=>0,'after'=>20]);
 $doc->addParagraph('NIP. ' . $nipKalapas, ['size'=>22,'align'=>'center','before'=>0,'after'=>0]);
 
@@ -141,7 +131,8 @@ $doc->addPageBreak();
 // HALAMAN 2: Surat Pernyataan Narapidana
 //            (tentang proses PB — komitmen)
 // ═══════════════════════════════════════════════════
-addKop($doc, $namaInstansi, $kanwil, $alamat, $telp, $fax, $email);
+$doc->addKopWithLogo($logoPath, $namaInstansi, $kanwil, $alamat, $telp, $fax, $email, $laman, $kodePos);
+$doc->addBlankLine();
 
 $doc->addParagraph('SURAT PERNYATAAN',
     ['bold'=>true,'align'=>'center','underline'=>true,'size'=>28,'before'=>80,'after'=>60]);
@@ -358,8 +349,10 @@ for ($i = 1; $i <= 5; $i++) {
     ];
 }
 $doc->addTable(['NO','NAMA','UMUR','PEKERJAAN','TANDA TANGAN'], $emptyRows, [
-    'colWidths' => [500, 2500, 1000, 2300, 3060]
+    'colWidths' => [500, 2500, 1000, 2300, 3060],
+    'noBorder'  => true,
 ]);
+
 
 $doc->addBlankLine();
 $doc->addParagraph('Apabila Narapidana Atas Nama …………………………………',

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login — SILAPAS Kelas IIB Tasikmalaya</title>
+    <title>Login — SIREGIS CB PB Kelas IIB Tasikmalaya</title>
     <meta name="description" content="Login ke SILAPAS Lembaga Pemasyarakatan Kelas IIB Tasikmalaya">
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
     <style>
@@ -65,14 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Logo & Header -->
         <div class="login-logo">
             <img src="<?= BASE_URL ?>/logo.jpg" alt="Logo Lapas" onerror="this.style.display='none'">
-            <div class="login-app-name">SILAPAS</div>
-            <h1>Sistem Informasi Lembaga Pemasyarakatan</h1>
-            <p>Lapas Kelas IIB Tasikmalaya &bull; Kemenimipas</p>
+            <div class="login-app-name">SIREGIS CB PB</div>
+            <h1>Sistem Informasi Registrasi Usulan Program CB dan PB</h1>
+            <p>Lapas Kelas IIB Tasikmalaya</p>
         </div>
 
         <div class="login-divider"></div>
-
-
 
         <?php if ($error): ?>
         <div class="login-alert">
@@ -119,6 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
+            <div style="text-align: right; margin-bottom: 16px; font-size: 13px;">
+                <a href="<?= BASE_URL ?>/lupa_password.php" style="color: #64b5f6; text-decoration: none;"><i class="fas fa-key"></i> Lupa Kata Sandi?</a>
+            </div>
+
             <button type="submit" class="btn-login" id="loginBtn">
                 <span id="loginText">
                     <i class="fas fa-right-to-bracket"></i> Masuk ke Sistem
@@ -126,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </button>
         </form>
 
-        <div class="login-footer">
-            &copy; <?= date('Y') ?> Lapas Kelas IIB Tasikmalaya &bull; Versi 1.0
+        <div class="login-footer" style="margin-top: 25px;">
+            Maganghub Kemnaker Lapas Kelas IIB Tasikmalaya tahun 2026
         </div>
     </div>
 

@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e($pageTitle ?? 'Dashboard') ?> — LAPAS Kelas IIB Tasikmalaya</title>
-    <meta name="description" content="SILAPAS Lembaga Pemasyarakatan Kelas IIB Tasikmalaya">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
+    <title><?= e($pageTitle ?? 'Dashboard') ?> — SIREGIS CB PB Kelas IIB Tasikmalaya</title>
+    <meta name="description" content="SIREGIS CB PB — Sistem Informasi Registrasi Usulan Program CB dan PB Lapas Kelas IIB Tasikmalaya">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>">
 </head>
 <body>
 <div class="app-wrapper">

@@ -328,7 +328,6 @@ include __DIR__ . '/../includes/header.php';
                 <select name="kegiatan" class="form-control" required>
                     <option value="PB"  <?= $napi['kegiatan']==='PB'  ?'selected':'' ?>>Pembebasan Bersyarat (PB)</option>
                     <option value="CB"  <?= $napi['kegiatan']==='CB'  ?'selected':'' ?>>Cuti Bersyarat (CB)</option>
-                    <option value="CMB" <?= $napi['kegiatan']==='CMB' ?'selected':'' ?>>CMB</option>
                 </select>
             </div>
             <div class="form-group">

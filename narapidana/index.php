@@ -29,7 +29,7 @@ if ($search !== '') {
     $params[] = "%$search%";
 }
 
-if (in_array($filter, ['CB', 'PB', 'CMB'])) {
+if (in_array($filter, ['CB', 'PB'])) {
     $where[]  = "kegiatan = ?";
     $params[] = $filter;
 } elseif ($filter === 'ekspirasi') {
@@ -63,7 +63,6 @@ include __DIR__ . '/../includes/header.php';
                 <option value="semua"   <?= $filter==='semua'   ?'selected':'' ?>>Semua Kategori</option>
                 <option value="CB"      <?= $filter==='CB'      ?'selected':'' ?>>Cuti Bersyarat (CB)</option>
                 <option value="PB"      <?= $filter==='PB'      ?'selected':'' ?>>Pembebasan Bersyarat (PB)</option>
-                <option value="CMB"     <?= $filter==='CMB'     ?'selected':'' ?>>CMB</option>
                 <option value="ekspirasi" <?= $filter==='ekspirasi'?'selected':'' ?>>⏰ Ekspirasi ≤ 30 Hari</option>
             </select>
             <button type="submit" class="btn btn-primary">Cari</button>
@@ -84,7 +83,6 @@ include __DIR__ . '/../includes/header.php';
         <div style="display:flex;gap:8px">
             <span class="badge badge-pb"><?= $pdo->query("SELECT COUNT(*) FROM narapidana WHERE status='aktif' AND kegiatan='PB'")->fetchColumn() ?> PB</span>
             <span class="badge badge-cb"><?= $pdo->query("SELECT COUNT(*) FROM narapidana WHERE status='aktif' AND kegiatan='CB'")->fetchColumn() ?> CB</span>
-            <span class="badge badge-cmb"><?= $pdo->query("SELECT COUNT(*) FROM narapidana WHERE status='aktif' AND kegiatan='CMB'")->fetchColumn() ?> CMB</span>
         </div>
     </div>
     <div class="card-body" style="padding:0">

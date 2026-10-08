@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // surat/daftar_litmas.php — Daftar Narapidana Permohonan LITMAS
 require_once __DIR__ . '/../config.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -58,7 +58,9 @@ include __DIR__ . '/../includes/header.php';
 
     <div class="card">
         <div class="card-header"><h2><i class="fas fa-file-lines"></i> Preview Daftar LITMAS</h2></div>
-        <div class="card-body" id="previewArea">
+        <div class="card-body" id="previewArea"
+             contenteditable="false"
+             style="pointer-events:none;user-select:none;-webkit-user-select:none">
             <div class="empty-state">
                 <div class="empty-icon"><i class="fas fa-magnifying-glass"></i></div>
                 <h3>Pilih WBP untuk preview</h3>
@@ -117,7 +119,7 @@ function generatePreview() {
     // Kop
     html += '<div style="text-align:center;border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:14px">';
     html += '<table style="width:100%;border:none"><tr>';
-    html += '<td style="width:70px;text-align:center"><img src="<?= BASE_URL ?>/logo.png" style="width:60px;height:60px;object-fit:contain"></td>';
+    html += '<td style="width:70px;text-align:center"><img src="<?= BASE_URL ?>/logo_kop.png" style="width:60px;height:60px;object-fit:contain"></td>';
     html += '<td style="text-align:center">';
     html += '<div>KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN REPUBLIK INDONESIA</div>';
     html += '<div>DIREKTORAT JENDERAL PEMASYARAKATAN</div>';
@@ -130,7 +132,7 @@ function generatePreview() {
 
     // Tabel
     html += '<table style="width:100%;border-collapse:collapse;font-size:10pt">';
-    html += '<thead><tr style="background:#0B2545;color:#fff">';
+    html += '<thead><tr style="background:#fff;color:#000;border-bottom:2px solid #000">';
     html += '<th style="border:1px solid #000;padding:5px;width:30px;text-align:center">No</th>';
     html += '<th style="border:1px solid #000;padding:5px;text-align:left">Nama / No. Register</th>';
     html += '<th style="border:1px solid #000;padding:5px;text-align:left">Pidana / Pasal</th>';

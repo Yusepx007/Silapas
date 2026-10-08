@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // surat/undangan_tpp.php — Generator Undangan Sidang TPP
 require_once __DIR__ . '/../config.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -146,7 +146,7 @@ function generatePreview() {
     // Kop
     html += '<div style="text-align:center;border-bottom:3px double #000;padding-bottom:8px;margin-bottom:14px">';
     html += '<table style="width:100%;border:none"><tr>';
-    html += '<td style="width:70px;text-align:center"><img src="<?= BASE_URL ?>/logo.png" style="width:60px;height:60px;object-fit:contain"></td>';
+    html += '<td style="width:70px;text-align:center"><img src="<?= BASE_URL ?>/logo_kop.png" style="width:60px;height:60px;object-fit:contain"></td>';
     html += '<td style="text-align:center">';
     html += '<div>KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN R.I.</div>';
     html += '<div>DIREKTORAT JENDERAL PEMASYARAKATAN</div>';

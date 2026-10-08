@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // surat/pengantar_cb_pb.php — Generator Surat Pengantar Usulan CB/PB
 require_once __DIR__ . '/../config.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
@@ -145,7 +145,7 @@ include __DIR__ . '/../includes/header.php';
                         <table style="width:100%;border:none">
                             <tr>
                                 <td style="width:80px;vertical-align:middle;text-align:center">
-                                    <img src="<?= BASE_URL ?>/logo.png" style="width:70px;height:70px;object-fit:contain">
+                                    <img src="<?= BASE_URL ?>/logo_kop.png" style="width:70px;height:70px;object-fit:contain">
                                 </td>
                                 <td style="vertical-align:middle;text-align:center">
                                     <div style="font-size:11pt">KEMENTERIAN IMIGRASI DAN PEMASYARAKATAN REPUBLIK INDONESIA</div>

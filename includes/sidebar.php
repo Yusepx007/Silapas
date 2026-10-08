@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // includes/sidebar.php
 $active = $activePage ?? '';
 
@@ -17,10 +17,10 @@ function isMenuOpen(array $children, string $active): string {
 <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-brand">
-        <img src="<?= BASE_URL ?>/logo.png" alt="Logo Lapas"
+        <img src="<?= BASE_URL ?>/logo_kop.png" alt="Logo Lapas"
              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><circle cx=%2240%22 cy=%2240%22 r=%2238%22 fill=%22%23C9A227%22/><text x=%2240%22 y=%2248%22 text-anchor=%22middle%22 font-size=%2226%22 fill=%22%230B2545%22>L</text></svg>'">
         <div class="sidebar-brand-text">
-            <h2>SILAPAS</h2>
+            <h2>SIREGIS CB PB</h2>
             <span>Lapas Kelas IIB Tasikmalaya</span>
         </div>
     </div>
@@ -88,7 +88,7 @@ function isMenuOpen(array $children, string $active): string {
         <a href="<?= BASE_URL ?>/surat/pengantar_cb_pb.php"
            class="nav-item <?= isActive('surat_pengantar', $active) ?>">
             <span class="nav-icon"><i class="fas fa-envelope-open-text"></i></span>
-            <span>Surat Pengantar CB/PB</span>
+            <span>Surat Pengantar Usulan Integrasi PB dan CB</span>
         </a>
 
         <a href="<?= BASE_URL ?>/surat/pernyataan.php"
@@ -100,25 +100,13 @@ function isMenuOpen(array $children, string $active): string {
         <a href="<?= BASE_URL ?>/surat/undangan_tpp.php"
            class="nav-item <?= isActive('surat_undangan', $active) ?>">
             <span class="nav-icon"><i class="fas fa-envelope"></i></span>
-            <span>Undangan Sidang TPP</span>
-        </a>
-
-        <a href="<?= BASE_URL ?>/surat/daftar_tpp.php"
-           class="nav-item <?= isActive('surat_daftar_tpp', $active) ?>">
-            <span class="nav-icon"><i class="fas fa-table-list"></i></span>
-            <span>Daftar WBP Sidang TPP</span>
+            <span>Undangan Integrasi PB dan CB</span>
         </a>
 
         <a href="<?= BASE_URL ?>/surat/daftar_litmas.php"
            class="nav-item <?= isActive('surat_daftar_litmas', $active) ?>">
-            <span class="nav-icon"><i class="fas fa-magnifying-glass-chart"></i></span>
-            <span>Daftar WBP LITMAS</span>
-        </a>
-
-        <a href="<?= BASE_URL ?>/surat/data_primer.php"
-           class="nav-item <?= isActive('surat_data_primer', $active) ?>">
-            <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
-            <span>Data Primer LITMAS</span>
+            <span class="nav-icon"><i class="fas fa-file-lines"></i></span>
+            <span>Usulan LITMAS</span>
         </a>
 
         <div class="nav-label">Lainnya</div>

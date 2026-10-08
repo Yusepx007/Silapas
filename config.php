@@ -4,17 +4,23 @@
 // SILAPAS — Sistem Informasi Lembaga Pemasyarakatan
 // =============================================
 
-// =============================================
-// GANTI nilai di bawah sesuai panel InfinityFree:
-// Panel → Basis Data MySQL → lihat MySQL Server & nama DB
-// =============================================
-define('DB_HOST', 'sql204.infinityfree.com'); // InfinityFree MySQL Server
-define('DB_USER', 'if0_42977027');             // Username MySQL
-define('DB_PASS', 'Lapas2026');                // Password MySQL
-define('DB_NAME', 'if0_42977027_lapas_db');   // Nama Database
+$hostName = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$isLocal  = (strpos($hostName, 'localhost') !== false || strpos($hostName, '127.0.0.1') !== false || strpos($hostName, '192.168.') !== false || php_sapi_name() === 'cli');
 
-define('SITE_NAME', 'Lapas Tasikmalaya');
-define('SITE_TITLE', 'SILAPAS LAPAS');
+if ($isLocal) {
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'lapas_db');
+} else {
+    define('DB_HOST', 'sql204.infinityfree.com'); // InfinityFree MySQL Server
+    define('DB_USER', 'if0_42977027');             // Username MySQL
+    define('DB_PASS', 'Lapas2026');                // Password MySQL
+    define('DB_NAME', 'if0_42977027_lapas_db');   // Nama Database
+}
+
+define('SITE_NAME', 'SIREGIS CB PB');
+define('SITE_TITLE', 'SIREGIS CB PB — Sistem Informasi Registrasi Usulan Program CB dan PB');
 
 // =============================================
 // Konfigurasi Jaringan Kantor (Multi-IP)
